@@ -144,16 +144,16 @@ btnFinalizar.addEventListener('click', () => {
         return;
     }
 
-    let mensagem = 'Olá, gostaria de fazer o pedido:%0A%0A';
+    let mensagem = 'Olá, gostaria de fazer o pedido:\n\n';
 
     carrinhoItens.forEach(item => {
-        mensagem += `- ${item.quantidade}x ${item.nome} - ${item.subtotal.toFixed(2).replace('.', ',')}%0A`;
+        mensagem += `- ${item.quantidade}x ${item.nome} - ${item.subtotal.toFixed(2).replace('.', ',')}\n`;
     });
 
     const subtotal = carrinhoItens.reduce((s, it ) => s + it.subtotal, 0);
-    mensagem += `%0ASubtotal: R$ ${subtotal.toFixed(2).replace('.', ',')}`;
-    mensagem += `%0AFrete: R$ ${FRETE_FIXO.toFixed(2).replace('.', ',')}`;
-    mensagem += `%0A*Total:* R$ ${(subtotal + FRETE_FIXO).toFixed(2).replace('.', ',')}`
+    mensagem += `\nSubtotal: R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+    mensagem += `\nFrete: R$ ${FRETE_FIXO.toFixed(2).replace('.', ',')}`;
+    mensagem += `\nTotal: R$ ${(subtotal + FRETE_FIXO).toFixed(2).replace('.', ',')}`
 
     const url = `https://wa.me/${TELEFONE_HAMBURGUERIA}?text=${encodeURIComponent(mensagem)}`;
   window.open(url, '_blank');
